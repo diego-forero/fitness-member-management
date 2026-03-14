@@ -3,7 +3,11 @@ import {
   findActiveMembershipByMemberId,
   findMemberById,
 } from "../repositories/members.repository";
-import { createMembership } from "../repositories/memberships.repository";
+import {
+  cancelMembershipById,
+  createMembership,
+  findMembershipById,
+} from "../repositories/memberships.repository";
 import { findPlanById } from "../repositories/plans.repository";
 
 type AssignMembershipInput = {
@@ -72,4 +76,33 @@ export async function assignMembershipService(
 
     throw error;
   }
+}
+
+export async function cancelMembershipService(
+  memberId: string,
+  membershipId: string,
+) {
+  const member = await findMemberById(memberId);
+
+  if (!member) {
+    throw new AppError(404, "Member not found");
+  }
+
+  const membership = await findMembershipById(membershipId);
+
+  if (!membership) {
+    throw new AppError(404, "Membership not found");
+  }
+
+  if (membership.memberId !== memberId) {
+    throw new AppError(400, "Membership does not belong to the specified member");
+  }
+
+  if (membership.cancellationEffectiveAt) {
+    throw new AppError(409, "Membership is already cancelled");
+  }
+
+  const cancelledMembership = await cancelMembershipById(membershipId);
+
+  return cancelledMembership;
 }

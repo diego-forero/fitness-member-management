@@ -2,8 +2,10 @@ import path from "node:path";
 import { config } from "dotenv";
 import { z } from "zod";
 
+const envFileName = process.env.NODE_ENV === "test" ? ".env.test" : ".env";
+
 config({
-  path: path.resolve(__dirname, "../../../../.env"),
+  path: path.resolve(__dirname, "../../../../", envFileName),
 });
 
 const envSchema = z.object({
