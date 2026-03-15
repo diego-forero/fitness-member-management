@@ -8,6 +8,10 @@
     "db:down": "docker compose down",
     "db:down:volumes": "docker compose down -v",
     "db:logs": "docker compose logs -f postgres",
+    "db:migrate": "pnpm --filter ./apps/api db:migrate",
+    "db:seed": "pnpm --filter ./apps/api db:seed",
+    "init:local": "pnpm db:up && pnpm db:migrate && pnpm db:seed",
+    "reset:local": "pnpm db:down:volumes && pnpm db:up && pnpm db:migrate && pnpm db:seed",
     "dev:api": "pnpm --filter ./apps/api dev",
     "dev:web": "pnpm --filter ./apps/web dev",
     "dev": "pnpm -r --parallel --filter ./apps/api --filter ./apps/web dev"

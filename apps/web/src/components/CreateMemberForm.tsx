@@ -75,7 +75,6 @@ export function CreateMemberForm({ onSuccess, onCancel }: CreateMemberFormProps)
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             className={inputClass("firstName")}
-            placeholder="Diego"
           />
           {fieldErrors.firstName?.map((msg, i) => (
             <p key={i} className="text-destructive text-xs mt-1">{msg}</p>
@@ -89,7 +88,6 @@ export function CreateMemberForm({ onSuccess, onCancel }: CreateMemberFormProps)
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             className={inputClass("lastName")}
-            placeholder="Forero"
           />
           {fieldErrors.lastName?.map((msg, i) => (
             <p key={i} className="text-destructive text-xs mt-1">{msg}</p>
@@ -103,7 +101,6 @@ export function CreateMemberForm({ onSuccess, onCancel }: CreateMemberFormProps)
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={inputClass("email")}
-            placeholder="diego@test.com"
           />
           {fieldErrors.email?.map((msg, i) => (
             <p key={i} className="text-destructive text-xs mt-1">{msg}</p>
