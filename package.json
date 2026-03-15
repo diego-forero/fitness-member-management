@@ -7,6 +7,9 @@
     "db:up": "docker compose up -d",
     "db:down": "docker compose down",
     "db:down:volumes": "docker compose down -v",
-    "db:logs": "docker compose logs -f postgres"
+    "db:logs": "docker compose logs -f postgres",
+    "dev:api": "pnpm --filter ./apps/api dev",
+    "dev:web": "pnpm --filter ./apps/web dev",
+    "dev": "pnpm -r --parallel --filter ./apps/api --filter ./apps/web dev"
   }
 }
