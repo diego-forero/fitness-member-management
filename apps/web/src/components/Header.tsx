@@ -16,7 +16,7 @@ export function Header() {
         <div className="w-8 h-8 bg-brand rounded-md flex items-center justify-center font-black italic text-primary-foreground text-sm">
           V
         </div>
-        <h1 className="font-bold tracking-tight text-lg uppercase">Volt Fitness</h1>
+        <h1 className="font-bold tracking-tight text-lg uppercase">SweatWork Fitness</h1>
       </div>
       <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
         <span
