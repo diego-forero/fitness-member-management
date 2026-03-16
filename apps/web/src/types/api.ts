@@ -11,10 +11,16 @@ export interface MembershipPlan {
   id: string;
   code: string;
   name: string;
-  description?: string;
+  description?: string | null;
   isActive?: boolean;
   createdAt?: string;
   updatedAt?: string;
+}
+
+export interface ManagedPlan extends MembershipPlan {
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ActiveMembership {

@@ -5,10 +5,16 @@ import type { Member } from "@/types/api";
 interface MembersListProps {
   onSelectMember: (id: string) => void;
   onCreateNew: () => void;
+  onManagePlans: () => void;
   refreshKey?: number;
 }
 
-export function MembersList({ onSelectMember, onCreateNew, refreshKey }: MembersListProps) {
+export function MembersList({
+  onSelectMember,
+  onCreateNew,
+  onManagePlans,
+  refreshKey,
+}: MembersListProps) {
   const [query, setQuery] = useState("");
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(false);
@@ -36,17 +42,25 @@ export function MembersList({ onSelectMember, onCreateNew, refreshKey }: Members
 
   return (
     <div>
-      <div className="flex justify-between items-end mb-8">
+      <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-end mb-8">
         <div>
           <h2 className="text-3xl font-bold mb-1">Members</h2>
           <p className="text-muted-foreground">Manage your community and check-ins.</p>
         </div>
-        <button
-          onClick={onCreateNew}
-          className="bg-brand hover:bg-brand-dark px-5 py-2.5 rounded-volt font-bold text-primary-foreground transition-all duration-200 active:scale-[0.98]"
-        >
-          Add Member
-        </button>
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            onClick={onManagePlans}
+            className="px-5 py-2.5 rounded-volt font-semibold text-muted-foreground hover:text-foreground bg-card hover:bg-panel border border-border transition-all duration-200"
+          >
+            Manage Plans
+          </button>
+          <button
+            onClick={onCreateNew}
+            className="bg-brand hover:bg-brand-dark px-5 py-2.5 rounded-volt font-bold text-primary-foreground transition-all duration-200 active:scale-[0.98]"
+          >
+            Add Member
+          </button>
+        </div>
       </div>
 
       <div className="bg-card rounded-volt shadow-volt overflow-hidden">

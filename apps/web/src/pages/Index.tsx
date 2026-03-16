@@ -3,8 +3,13 @@ import { Header } from "@/components/Header";
 import { MembersList } from "@/components/MembersList";
 import { CreateMemberForm } from "@/components/CreateMemberForm";
 import { MemberDetail } from "@/components/MemberDetail";
+import { PlansManagement } from "@/components/PlansManagement";
 
-type View = { type: "list" } | { type: "create" } | { type: "detail"; memberId: string };
+type View =
+  | { type: "list" }
+  | { type: "create" }
+  | { type: "plans" }
+  | { type: "detail"; memberId: string };
 
 const Index = () => {
   const [view, setView] = useState<View>({ type: "list" });
@@ -20,6 +25,7 @@ const Index = () => {
           <MembersList
             onSelectMember={(id) => setView({ type: "detail", memberId: id })}
             onCreateNew={() => setView({ type: "create" })}
+            onManagePlans={() => setView({ type: "plans" })}
             refreshKey={refreshKey}
           />
         )}
@@ -35,6 +41,14 @@ const Index = () => {
         {view.type === "detail" && (
           <MemberDetail
             memberId={view.memberId}
+            onBack={() => {
+              refresh();
+              setView({ type: "list" });
+            }}
+          />
+        )}
+        {view.type === "plans" && (
+          <PlansManagement
             onBack={() => {
               refresh();
               setView({ type: "list" });
