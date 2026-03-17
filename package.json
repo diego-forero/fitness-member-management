@@ -2,8 +2,10 @@
   "name": "fitness-member-management",
   "private": true,
   "version": "1.0.0",
-    "packageManager": "pnpm@10.0.0",
+  "packageManager": "pnpm@10.0.0",
   "scripts": {
+    "build:api": "pnpm --filter ./apps/api build",
+    "start:api": "pnpm --filter ./apps/api start",
     "db:up": "docker compose up -d",
     "db:down": "docker compose down",
     "db:down:volumes": "docker compose down -v",
