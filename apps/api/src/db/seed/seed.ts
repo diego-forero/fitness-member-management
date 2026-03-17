@@ -2,18 +2,30 @@ import { eq } from "drizzle-orm";
 import { db, pool } from "../client";
 import { plans } from "../schema";
 
-async function seed() {
-  const existingPlan = await db.query.plans.findFirst({
-    where: eq(plans.code, "MONTHLY_BASIC"),
-  });
+const defaultPlans = [
+  {
+    code: "MONTHLY_BASIC",
+    name: "Monthly Basic",
+    description: "Basic monthly membership plan",
+    isActive: true,
+  },
+  {
+    code: "MONTHLY_PLUS",
+    name: "Monthly Plus",
+    description: "Premium monthly membership plan",
+    isActive: true,
+  },
+] as const;
 
-  if (!existingPlan) {
-    await db.insert(plans).values({
-      code: "MONTHLY_BASIC",
-      name: "Monthly Basic",
-      description: "Basic monthly membership plan",
-      isActive: true,
+async function seed() {
+  for (const plan of defaultPlans) {
+    const existingPlan = await db.query.plans.findFirst({
+      where: eq(plans.code, plan.code),
     });
+
+    if (!existingPlan) {
+      await db.insert(plans).values(plan);
+    }
   }
 
   console.log("Seed completed");
