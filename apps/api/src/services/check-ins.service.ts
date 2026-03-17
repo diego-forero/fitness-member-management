@@ -20,6 +20,10 @@ export async function recordCheckInService(memberId: string) {
 
   const checkIn = await createCheckIn(activeMembership.id);
 
+  if (!checkIn) {
+    throw new AppError(500, "Failed to record check-in");
+  }
+
   return {
     id: checkIn.id,
     memberId: member.id,

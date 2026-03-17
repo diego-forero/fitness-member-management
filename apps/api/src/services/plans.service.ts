@@ -14,15 +14,15 @@ import {
 type CreatePlanInput = {
   code: string;
   name: string;
-  description?: string | null;
-  isActive?: boolean;
+  description?: string | null | undefined;
+  isActive?: boolean | undefined;
 };
 
 type UpdatePlanInput = {
-  code?: string;
-  name?: string;
-  description?: string | null;
-  isActive?: boolean;
+  code?: string | undefined;
+  name?: string | undefined;
+  description?: string | null | undefined;
+  isActive?: boolean | undefined;
 };
 
 function normalizeCode(code: string) {
