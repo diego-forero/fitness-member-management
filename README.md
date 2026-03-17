@@ -7,6 +7,7 @@ Full-stack solution for the SweatWorks technical challenge. The application mana
 - Web app: `https://fitness-member-management-web.vercel.app/`
 - API: `https://fitness-member-management-api.onrender.com`
 - Health check: `https://fitness-member-management-api.onrender.com/api/health`
+- Postman docs: `https://documenter.getpostman.com/view/18266187/2sBXihoXYf`
 
 ## Challenge Scope Implemented
 
